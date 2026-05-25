@@ -1,0 +1,147 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-primary: #0a0a0a;
+  --bg-secondary: #111111;
+  --bg-card: #0a0a0a;
+  --accent-primary: #c8f565;
+  --accent-secondary: #f5c542;
+  --text-primary: #e8e8e0;
+  --text-secondary: #6b6b60;
+  --border: #1e1e1e;
+  --glow: rgba(200, 245, 101, 0.02);
+  --white: #fafaf7;
+
+  /* HTML mapping variables */
+  --bg: #0a0a0a;
+  --surface: #111111;
+  --accent: #c8f565;
+  --accent2: #f5c542;
+  --text: #e8e8e0;
+  --muted: #6b6b60;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: 'DM Sans', sans-serif;
+  overflow-x: hidden;
+  font-weight: 300;
+}
+
+/* Noise overlay */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 1000;
+  opacity: 0.5;
+}
+
+/* Dot grid background */
+.dot-grid {
+  background-image: radial-gradient(circle, rgba(200, 245, 101, 0.06) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--accent-primary);
+  border-radius: 2px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(200, 245, 101, 0.8);
+}
+
+/* Glow text utility */
+.glow-text {
+  text-shadow: 0 0 20px rgba(200, 245, 101, 0.4);
+}
+
+/* Glow border utility */
+.glow-border {
+  border: 1px solid var(--border);
+  box-shadow: 0 0 20px var(--glow), inset 0 0 20px var(--glow);
+}
+
+/* Custom cursor follower */
+.custom-cursor {
+  width: 10px; height: 10px;
+  background: var(--accent-primary);
+  border-radius: 50%;
+  position: fixed;
+  top: 0; left: 0;
+  pointer-events: none;
+  z-index: 9999;
+  mix-blend-mode: difference;
+  display: none;
+  transform: translate(-100px, -100px);
+}
+.custom-cursor-follower {
+  width: 36px; height: 36px;
+  border: 1px solid rgba(200, 245, 101, 0.4);
+  border-radius: 50%;
+  position: fixed;
+  top: 0; left: 0;
+  pointer-events: none;
+  z-index: 9998;
+  transition: opacity 0.3s;
+  display: none;
+  transform: translate(-100px, -100px);
+}
+
+@media (pointer: fine) {
+  .custom-cursor, .custom-cursor-follower {
+    display: block;
+  }
+  body, a, button, [role="button"] {
+    cursor: none !important;
+  }
+}
+
+/* Blinking cursor */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+.cursor-blink {
+  animation: blink 1s step-end infinite;
+}
+
+/* Scroll progress bar */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  background: var(--accent-primary);
+  z-index: 9999;
+  transform-origin: left;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
