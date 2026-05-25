@@ -10,61 +10,26 @@ export const Education: React.FC = () => {
         <SectionHeader label="05 — Education" />
 
         <motion.div
-          className="relative border p-10 md:p-14 overflow-hidden grid grid-cols-1 md:grid-cols-[1fr_auto] gap-10 items-center mt-12 cursor-default"
-          style={{ borderColor: 'var(--border)', background: 'var(--bg-primary)' }}
+          className="mt-12"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-100px' }}
           transition={{ duration: 0.7 }}
         >
-          {/* Big background acronym watermark */}
-          <div
-            className="absolute -right-5 -bottom-8 font-black pointer-events-none select-none leading-none"
-            style={{
-              color: 'rgba(200, 245, 101, 0.04)',
-              fontFamily: '"Playfair Display", serif',
-              fontSize: 'clamp(100px, 12vw, 150px)',
-              letterSpacing: '-5px',
-            }}
-          >
-            MCA
-          </div>
-
-          <div className="relative z-10">
+          <div className="py-4">
             <h3
-              className="text-white font-black leading-tight mb-2"
-              style={{ fontFamily: '"Playfair Display", serif', fontSize: 'clamp(28px, 4vw, 42px)', letterSpacing: '-1px' }}
+              className="text-2xl md:text-4xl text-white font-normal leading-tight"
+              style={{ fontFamily: '"Playfair Display", serif', letterSpacing: '-0.5px' }}
             >
-              Master of
-              <br />
-              Computer Applications
+              {education.degree}
             </h3>
-            <div
-              className="font-mono text-sm mb-1"
-              style={{ color: 'var(--text-secondary)', letterSpacing: '0.08em' }}
-            >
-              {education.school}
-            </div>
-            <div
-              className="font-mono text-xs"
-              style={{ color: 'var(--accent-primary)', letterSpacing: '0.1em' }}
-            >
-              {education.period}
-            </div>
-          </div>
-
-          <div className="relative z-10 shrink-0 md:text-center flex flex-col md:items-center">
-            <div
-              className="font-black leading-none"
-              style={{ fontFamily: '"Playfair Display", serif', fontSize: 'clamp(54px, 6vw, 64px)', color: 'var(--accent-primary)' }}
-            >
-              {education.cgpa}
-            </div>
-            <div
-              className="font-mono text-xxs uppercase mt-1"
-              style={{ color: 'var(--text-secondary)', letterSpacing: '0.15em' }}
-            >
-              CGPA
+            <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-2 mt-4 font-mono text-xs md:text-sm tracking-wider">
+              <div className="text-text-secondary">
+                {education.school} &middot; {education.cgpa} CGPA
+              </div>
+              <div className="text-[#00D4FF] whitespace-nowrap">
+                {education.period}
+              </div>
             </div>
           </div>
         </motion.div>
